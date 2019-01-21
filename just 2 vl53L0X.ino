@@ -99,10 +99,9 @@ void loop()
     Serial.print("");
   }
 
- delay(90); 
+ delay(100); 
   Serial.println();
   Serial.println("__________________________________________________________________");
 
   
-  delay(10);//can change to a lower time like 100
-}
+  }
