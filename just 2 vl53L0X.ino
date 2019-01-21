@@ -1,6 +1,10 @@
 #include <Wire.h>
 #include <VL53L0X.h>
 
+
+int debug = 0;  /// Mettre des informations de débugage 
+
+
 VL53L0X sensor;
 VL53L0X sensor2;
 
@@ -62,19 +66,19 @@ void loop()
   //FWD OR SENSOR
   if (sensor.timeoutOccurred())
   {
-    Serial.println("_________________________________");
+//    Serial.println("_________________________________");
     Serial.print("Distance 1 (READING): ");
     Serial.println(" TIMEOUT");
-    Serial.println("_________________________________");
+//    Serial.println("_________________________________");
     Serial.println("");
   }
   else
   {
-    Serial.println("_________________________________");
-    Serial.print("Distance 1   (mm): ");
-    Serial.println( sensor.readRangeSingleMillimeters() );
-    Serial.println("_________________________________");
-    Serial.println("");
+//    Serial.println("_________________________________");
+    Serial.print("Distance 1   (mm):     ");
+    Serial.print( sensor.readRangeSingleMillimeters() );
+//    Serial.println("_________________________________");
+//    Serial.println("");
   }
 
   //FLT OR SENSOR2
@@ -88,15 +92,17 @@ void loop()
   }
   else
   {
-    Serial.println("_________________________________");
+   Serial.print("      ");
     Serial.print("Distance 2   (mm): ");
-    Serial.println(sensor2.readRangeSingleMillimeters());
-    Serial.println("_________________________________");
-    Serial.println("");
+    Serial.print(sensor2.readRangeSingleMillimeters());
+//    Serial.print("_________________________________");
+    Serial.print("");
   }
-  
+
+ delay(90); 
+  Serial.println();
   Serial.println("__________________________________________________________________");
 
   
-  delay(100);//can change to a lower time like 100
+  delay(10);//can change to a lower time like 100
 }
