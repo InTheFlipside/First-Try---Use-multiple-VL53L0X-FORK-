@@ -11,7 +11,7 @@ VL53L0X sensor2;
 
 void setup()
 {
-  debug = 0;
+
 
 
   
@@ -29,21 +29,21 @@ void setup()
   //SENSOR
   pinMode(9, INPUT);
   delay(150);
-  if (debug = 1 && debug != 0) { Serial.println("Get adress of sensor 1"); }
+  if (debug != 0) { Serial.println("Get adress of sensor 1"); }
   sensor.init(true);
-  if (debug = 1 && debug != 0) { Serial.println("Init of the sensor 1 ");    }
+  if (debug != 0) { Serial.println("Init of the sensor 1 ");    }
   delay(100);
   sensor.setAddress((uint8_t)22);
-  Serial.println("02");
+if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
 
   //SENSOR 2
   pinMode(10, INPUT);
   delay(150);
   sensor2.init(true);
- if (debug = 1 && debug != 0) { Serial.println("Get adress of sensor 2"); }
+ if (debug != 0) {Serial.println("Get adress of sensor 2");}
   delay(100);
   sensor2.setAddress((uint8_t)25);
- if (debug == 1 && debug != 0)  { Serial.println("Init of the sensor 2");
+ if (debug != 0){ Serial.println("Init of the sensor 2");
 
   Serial.println("");
   Serial.println("all addresses set !");
@@ -136,9 +136,7 @@ void loop()
   Serial.println();
   Serial.println("__________________________________________________________________");
 
-            if (debug == 1 && debug != 0) {
-Serial.write(27); 
-Serial.print("[2J"); // clear screen 
-Serial.write(27);  }  
+            if (debug != 0) {
+                              }  
  
   } // VOID LOOP
