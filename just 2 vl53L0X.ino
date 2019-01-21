@@ -52,6 +52,8 @@ void setup()
 
 void loop()
 {
+
+
  
   //CHECK DISTANCES
   long DISTANCE_FWD = (sensor.readRangeSingleMillimeters()/25.4001);
@@ -61,7 +63,7 @@ void loop()
   if (sensor.timeoutOccurred())
   {
     Serial.println("_________________________________");
-    Serial.print("Distance FWD (READING): ");
+    Serial.print("Distance 1 (READING): ");
     Serial.println(" TIMEOUT");
     Serial.println("_________________________________");
     Serial.println("");
@@ -69,10 +71,8 @@ void loop()
   else
   {
     Serial.println("_________________________________");
-    Serial.print("Distance FWD   (feet): ");
-    Serial.println(DISTANCE_FWD/12);
-    Serial.print("Distance FWD (inches): ");
-    Serial.println(DISTANCE_FWD);
+    Serial.print("Distance 1   (mm): ");
+    Serial.println( sensor.readRangeSingleMillimeters() );
     Serial.println("_________________________________");
     Serial.println("");
   }
@@ -81,7 +81,7 @@ void loop()
   if (sensor2.timeoutOccurred())
   {
     Serial.println("_________________________________");
-    Serial.print("Distance FLT (READING): ");
+    Serial.print("Distance 2 (READING): ");
     Serial.println(" TIMEOUT");
     Serial.println("_________________________________");
     Serial.println("");
@@ -89,21 +89,14 @@ void loop()
   else
   {
     Serial.println("_________________________________");
-    Serial.print("Distance FLT   (feet): ");
-    Serial.println(DISTANCE_FLT/12);
-    Serial.print("Distance FLT (inches): ");
-    Serial.println(DISTANCE_FLT);
+    Serial.print("Distance 2   (mm): ");
+    Serial.println(sensor2.readRangeSingleMillimeters());
     Serial.println("_________________________________");
     Serial.println("");
   }
   
   Serial.println("__________________________________________________________________");
-  Serial.println();
-  Serial.println();
-  Serial.println();
-  Serial.println();
-
 
   
-  delay(2000);//can change to a lower time like 100
+  delay(100);//can change to a lower time like 100
 }
