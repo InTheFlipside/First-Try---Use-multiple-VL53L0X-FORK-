@@ -2,7 +2,7 @@
 #include <VL53L0X.h>
 
 
-int debug = 1;  /// Add debug info
+int debug = 1;  /// Activer le debuggage
 
 
 
@@ -29,7 +29,7 @@ void setup()
   //SENSOR
   pinMode(9, INPUT);
   delay(150);
-  if (debug != 0) { Serial.println("Get adress of sensor 1"); }
+  if (debug != 0) { Serial.println("Get adress of sensor 1"); }  /// Récupérer l'adresse du capteur 1 en I2C
   sensor.init(true);
   if (debug != 0) { Serial.println("Init of the sensor 1 ");    }
   delay(100);
@@ -40,13 +40,13 @@ if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
   pinMode(10, INPUT);
   delay(150);
   sensor2.init(true);
- if (debug != 0) {Serial.println("Get adress of sensor 2");}
+ if (debug != 0) {Serial.println("Get adress of sensor 2");}  /// Récupérer l'adresse du capteur 2 en I2C
   delay(100);
   sensor2.setAddress((uint8_t)25);
- if (debug != 0){ Serial.println("Init of the sensor 2");
+ if (debug != 0){ Serial.println("Init of the sensor 2"); 
 
   Serial.println("");
-  Serial.println("all addresses set !");
+  Serial.println("all addresses set !");                     /// les capteurs (les adresses sont configurées) marchent tous -> le code démarre maintenant
   Serial.println("");
   Serial.println("");
 
@@ -90,53 +90,46 @@ if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
 void loop()
 {
 
-
  
-  //CHECK DISTANCES
-  long DISTANCE_FWD = (sensor.readRangeSingleMillimeters()/25.4001);
-  long DISTANCE_FLT = (sensor2.readRangeSingleMillimeters()/25.4001);
-  
-  //FWD OR SENSOR
+  //Si le capteur ne fonctionne pas (voir sensor.setTimeout) -> Afficher un code d'erreur
   if (sensor.timeoutOccurred())
   {
-//    Serial.println("_________________________________");
-    Serial.print("Distance 1 (READING): ");
+    Serial.println("_________________________________");
+    Serial.print("Sensor 1: ");
     Serial.println(" TIMEOUT");
-//    Serial.println("_________________________________");
+    Serial.println("_________________________________");
     Serial.println("");
   }
   else
   {
-//    Serial.println("_________________________________");
     Serial.print("Distance 1   (mm):     ");
     Serial.print( sensor.readRangeSingleMillimeters() );
-//    Serial.println("_________________________________");
-//    Serial.println("");
   }
 
-  //FLT OR SENSOR2
+  ////Si le capteur ne fonctionne pas (voir sensor2.setTimeout) -> Afficher un code d'erreur
   if (sensor2.timeoutOccurred())
   {
     Serial.println("_________________________________");
-    Serial.print("Distance 2 (READING): ");
+    Serial.print("Sensor 2: ");
     Serial.println(" TIMEOUT");
     Serial.println("_________________________________");
     Serial.println("");
   }
   else
   {
-   Serial.print("      ");
+   Serial.print("      "); // Pour mettre de l'espace entre les 2 affichages de distance sans toucher au serial.print "Distance 2..."
     Serial.print("Distance 2   (mm): ");
     Serial.print(sensor2.readRangeSingleMillimeters());
-//    Serial.print("_________________________________");
     Serial.print("");
   }
 
- delay(100); 
+ delay(75); 
   Serial.println();
-  Serial.println("__________________________________________________________________");
+  Serial.println("__________________________________________________________________");   // Fin de la captation de la distance
+  
 
             if (debug != 0) {
+                            // NO CODE HERE NOW
                               }  
  
   } // VOID LOOP
