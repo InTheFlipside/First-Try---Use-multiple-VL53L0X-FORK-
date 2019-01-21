@@ -2,7 +2,8 @@
 #include <VL53L0X.h>
 
 
-int debug = 0;  /// Mettre des informations de débugage 
+int debug = 1;  /// Add debug info
+
 
 
 VL53L0X sensor;
@@ -10,7 +11,10 @@ VL53L0X sensor2;
 
 void setup()
 {
+  debug = 0;
 
+
+  
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
   digitalWrite(9, LOW);
@@ -25,9 +29,9 @@ void setup()
   //SENSOR
   pinMode(9, INPUT);
   delay(150);
-  Serial.println("00");
+  if (debug = 1 && debug != 0) { Serial.println("Get adress of sensor 1"); }
   sensor.init(true);
-  Serial.println("01");
+  if (debug = 1 && debug != 0) { Serial.println("Init of the sensor 1 ");    }
   delay(100);
   sensor.setAddress((uint8_t)22);
   Serial.println("02");
@@ -36,17 +40,46 @@ void setup()
   pinMode(10, INPUT);
   delay(150);
   sensor2.init(true);
-  Serial.println("03");
+ if (debug = 1 && debug != 0) { Serial.println("Get adress of sensor 2"); }
   delay(100);
   sensor2.setAddress((uint8_t)25);
-  Serial.println("04");
+ if (debug == 1 && debug != 0)  { Serial.println("Init of the sensor 2");
 
   Serial.println("");
-  Serial.println("addresses set");
+  Serial.println("all addresses set !");
   Serial.println("");
   Serial.println("");
 
-
+  Serial.println("-----------------CODE WILL START HERE-----------------------");
+  delay(1000);
+  Serial.println();
+  Serial.print("3");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(700);
+  Serial.print("2");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(700);
+  Serial.print("1");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(100);
+  Serial.print(".");
+  delay(700);
+  Serial.println("0");
+  
+ }
 
   sensor.setTimeout(500);
   sensor2.setTimeout(500);
@@ -103,5 +136,9 @@ void loop()
   Serial.println();
   Serial.println("__________________________________________________________________");
 
-  
-  }
+            if (debug == 1 && debug != 0) {
+Serial.write(27); 
+Serial.print("[2J"); // clear screen 
+Serial.write(27);  }  
+ 
+  } // VOID LOOP
