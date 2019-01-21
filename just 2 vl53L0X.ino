@@ -3,17 +3,14 @@
 
 VL53L0X sensor;
 VL53L0X sensor2;
-VL53L0X sensor3;
 
 void setup()
 {
 
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
-  pinMode(11, OUTPUT);
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
-  digitalWrite(11, LOW);
 
   delay(500);
   Wire.begin();
@@ -40,15 +37,6 @@ void setup()
   sensor2.setAddress((uint8_t)25);
   Serial.println("04");
 
-  //SENSOR 3
-  pinMode(11, INPUT);
-  delay(150);
-  sensor3.init(true);
-  Serial.println("05");
-  delay(100);
-  sensor3.setAddress((uint8_t)28);
-  Serial.println("06");
-
   Serial.println("");
   Serial.println("addresses set");
   Serial.println("");
@@ -58,7 +46,6 @@ void setup()
 
   sensor.setTimeout(500);
   sensor2.setTimeout(500);
-  sensor3.setTimeout(500);
 
 
 }
@@ -69,8 +56,7 @@ void loop()
   //CHECK DISTANCES
   long DISTANCE_FWD = (sensor.readRangeSingleMillimeters()/25.4001);
   long DISTANCE_FLT = (sensor2.readRangeSingleMillimeters()/25.4001);
-  long DISTANCE_FRT = (sensor3.readRangeSingleMillimeters()/25.4001);
-
+  
   //FWD OR SENSOR
   if (sensor.timeoutOccurred())
   {
@@ -110,28 +96,6 @@ void loop()
     Serial.println("_________________________________");
     Serial.println("");
   }
-  
-  //FRT OR SENSOR3
-  if (sensor3.timeoutOccurred())
-  {
-    Serial.println("_________________________________");
-    Serial.print("Distance FRT (READING): ");
-    Serial.println(" TIMEOUT");
-    Serial.println("_________________________________");
-    Serial.println("");
-  }
-  else
-  {
-    Serial.println("_________________________________");
-    Serial.print("Distance FRT   (feet): ");
-    Serial.println(DISTANCE_FRT/12);
-    Serial.print("Distance FRTD (inches): ");
-    Serial.println(DISTANCE_FRT);
-    Serial.println("_________________________________");
-    Serial.println("");
-  }
-
-
   
   Serial.println("__________________________________________________________________");
   Serial.println();
