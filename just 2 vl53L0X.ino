@@ -3,7 +3,7 @@
 
 
 int debug = 1;  /// Activer le debuggage
-
+int timetostart = 500;
 
 
 VL53L0X sensor;
@@ -102,7 +102,7 @@ void loop()
   }
   else
   {
-    Serial.print("Distance 1   (mm):     ");
+    Serial.print("Distance 1   (mm):  ");
     Serial.print( sensor.readRangeSingleMillimeters() );
   }
 
@@ -123,13 +123,13 @@ void loop()
     Serial.print("");
   }
 
- delay(75); 
+
   Serial.println();
   Serial.println("__________________________________________________________________");   // Fin de la captation de la distance
   
 
             if (debug != 0) {
-                            // Rien pour l'instant
+           for (int i=0; i<100; i++) {Serial.print("\n"); }     
                               }  
- 
-  } //FIN DU VOID LOOP
+  delay(timetostart); 
+  } // VOID LOOP
