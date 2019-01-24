@@ -7,7 +7,7 @@ void setup() { Serial.begin(9600); }
 void loop() {
 valeur = Serial.parseInt();
 
-if(valeur>10 && valeur<50) {
+while(valeur>10 && valeur<50) {
   Serial.println("Entre 10 et 50"); 
        Serial.println(lissage);
        if(lissage=3)
@@ -22,7 +22,7 @@ if(valeur > 50) {
   lissage = 0;  }
 
 
-if(action != 0) { Serial.println("COOOOOOOOOOOOOOOOOOOOOOOOOOOODE"); }
+if(action != 0) { Serial.println("COOOOOOOOOOOOOOOOOOOOOOOOOOOODE LAAAAAAAAAAAAAAAAUUUUUUUUUUNNNNNNNNNCH"); }
 
 
 delay(100);
