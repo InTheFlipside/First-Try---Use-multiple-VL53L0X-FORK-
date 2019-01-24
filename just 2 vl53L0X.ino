@@ -129,7 +129,7 @@ void loop()
   
 
             if (debug != 0) {
-                            // NO CODE HERE NOW
+                            // Rien pour l'instant
                               }  
  
-  } // VOID LOOP
+  } //FIN DU VOID LOOP
