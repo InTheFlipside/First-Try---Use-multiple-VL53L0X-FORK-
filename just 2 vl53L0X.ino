@@ -3,23 +3,21 @@
 
 
 int debug = 0;  /// Activer le debuggage
-int timetostart = 500;
-
-
+int timetostart = 50;
+float medium;
+float sensorc;
+float sensorc2;
 VL53L0X sensor;
 VL53L0X sensor2;
 
 void setup()
 {
 
-
-
-  
+  pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
-
   delay(500);
   Wire.begin();
 
@@ -90,6 +88,10 @@ if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
 void loop()
 {
 
+
+sensorc = sensor.readRangeSingleMillimeters();
+sensorc2 = sensor2.readRangeSingleMillimeters();
+
  
   //Si le capteur ne fonctionne pas (voir sensor.setTimeout) -> Afficher un code d'erreur
   if (debug != 0) {
@@ -128,10 +130,27 @@ void loop()
     Serial.print("");
   }
 
+  
+medium = sensorc / sensorc2;
+
+Serial.print("         Moyenne des valeurs:  ");
+Serial.print(medium);
+
+
+if(medium > 0 && medium < 0.75){digitalWrite(8, HIGH);}
+if(medium > 0.75 && medium < 1.25){digitalWrite(8, LOW);}
+if(medium > 1.25){digitalWrite(8, HIGH);}
+
 
   Serial.println();
   Serial.println("__________________________________________________________________");   // Fin de la captation de la distance
   
+
+
+
+
+
+
 
             if (debug != 0) {
       //     for (int i=0; i<100; i++) {Serial.print("\n"); }     
