@@ -2,7 +2,7 @@
 #include <VL53L0X.h>
 
 
-int debug = 1;  /// Activer le debuggage
+int debug = 0;  /// Activer le debuggage
 int timetostart = 500;
 
 
@@ -92,6 +92,7 @@ void loop()
 
  
   //Si le capteur ne fonctionne pas (voir sensor.setTimeout) -> Afficher un code d'erreur
+  if (debug != 0) {
   if (sensor.timeoutOccurred())
   {
     Serial.println("_________________________________");
@@ -99,7 +100,9 @@ void loop()
     Serial.println(" TIMEOUT");
     Serial.println("_________________________________");
     Serial.println("");
-  }
+  } }
+
+  
   else
   {
     Serial.print("Distance 1   (mm):  ");
@@ -107,14 +110,16 @@ void loop()
   }
 
   ////Si le capteur ne fonctionne pas (voir sensor2.setTimeout) -> Afficher un code d'erreur
-  if (sensor2.timeoutOccurred())
+ if (debug != 0) { if (sensor2.timeoutOccurred())
   {
     Serial.println("_________________________________");
     Serial.print("Sensor 2: ");
     Serial.println(" TIMEOUT");
     Serial.println("_________________________________");
     Serial.println("");
-  }
+  } }
+
+  
   else
   {
    Serial.print("      "); // Pour mettre de l'espace entre les 2 affichages de distance sans toucher au serial.print "Distance 2..."
@@ -129,7 +134,7 @@ void loop()
   
 
             if (debug != 0) {
-           for (int i=0; i<100; i++) {Serial.print("\n"); }     
+      //     for (int i=0; i<100; i++) {Serial.print("\n"); }     
                               }  
   delay(timetostart); 
   } // VOID LOOP
