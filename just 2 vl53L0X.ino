@@ -12,7 +12,7 @@ VL53L0X sensor2;
 
 void setup()
 {
-
+  pinMode(7, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
@@ -138,14 +138,13 @@ Serial.print(medium);
 
 
 if(medium > 0 && medium < 0.80){digitalWrite(8, HIGH);}
-if(medium > 0.80 && medium < 1.11){digitalWrite(8, LOW);}
-if(medium > 1.11){digitalWrite(8, HIGH);}
+if(medium > 0.80 && medium < 1.09){digitalWrite(8, LOW); digitalWrite(7,LOW); }
+if(medium > 1.09){digitalWrite(7, HIGH);}
 
 
   Serial.println();
   Serial.println("__________________________________________________________________");   // Fin de la captation de la distance
   
-
 
 
 
