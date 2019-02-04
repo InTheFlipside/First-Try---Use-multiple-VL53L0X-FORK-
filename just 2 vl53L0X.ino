@@ -137,9 +137,9 @@ Serial.print("         Moyenne des valeurs:  ");
 Serial.print(medium);
 
 
-if(medium > 0 && medium < 0.75){digitalWrite(8, HIGH);}
-if(medium > 0.75 && medium < 1.25){digitalWrite(8, LOW);}
-if(medium > 1.25){digitalWrite(8, HIGH);}
+if(medium > 0 && medium < 0.80){digitalWrite(8, HIGH);}
+if(medium > 0.80 && medium < 1.11){digitalWrite(8, LOW);}
+if(medium > 1.11){digitalWrite(8, HIGH);}
 
 
   Serial.println();
