@@ -79,8 +79,8 @@ if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
   
  }
 
-  sensor.setTimeout(500);
-  sensor2.setTimeout(500);
+  sensor.setTimeout(200);
+  sensor2.setTimeout(200);
 
 
 }
@@ -130,16 +130,17 @@ sensorc2 = sensor2.readRangeSingleMillimeters();
     Serial.print("");
   }
 
-  
+sensorc = sensor.readRangeSingleMillimeters();
+sensorc2 = sensor2.readRangeSingleMillimeters(); 
 medium = sensorc / sensorc2;
 
 Serial.print("         Moyenne des valeurs:  ");
 Serial.print(medium);
 
 
-if(medium > 0 && medium < 0.80){digitalWrite(8, HIGH);}
+if(medium > 0 && medium < 0.80){digitalWrite(8, HIGH); digitalWrite(7,LOW);}
 if(medium > 0.80 && medium < 1.09){digitalWrite(8, LOW); digitalWrite(7,LOW); }
-if(medium > 1.09){digitalWrite(7, HIGH);}
+if(medium > 1.09){digitalWrite(7, HIGH); digitalWrite(8, LOW);}
 
 
   Serial.println();
