@@ -152,7 +152,7 @@ if(medium > 0.90 && medium < 1.03){digitalWrite(8, LOW); digitalWrite(7,LOW); }
 if(medium > 1.03){digitalWrite(7, HIGH); digitalWrite(8, HIGH);}
               }
 
-/// MODE 1
+/// MODE 1 
 if(mode != 0){
   sensorc = sensor.readRangeSingleMillimeters();
 sensorc2 = sensor2.readRangeSingleMillimeters(); 
