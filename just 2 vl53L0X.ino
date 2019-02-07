@@ -4,6 +4,7 @@
 
 int debug = 0;  /// Activer le debuggage
 int timetostart = 50;
+int mode = 0; /// O = division 1 = soustraction
 float medium;
 float sensorc;
 float sensorc2;
@@ -18,7 +19,7 @@ void setup()
   pinMode(10, OUTPUT);
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
-  delay(500);
+  delay(5);
   Wire.begin();
 
 
@@ -76,6 +77,11 @@ if (debug != 0)  {  Serial.println("Sensor 1 WORKING ! "); }
   Serial.print(".");
   delay(700);
   Serial.println("0");
+
+
+
+
+
   
  }
 
@@ -130,6 +136,9 @@ sensorc2 = sensor2.readRangeSingleMillimeters();
     Serial.print("");
   }
 
+
+///MODE 0 
+if(mode != 1) {
 sensorc = sensor.readRangeSingleMillimeters();
 sensorc2 = sensor2.readRangeSingleMillimeters(); 
 medium = sensorc / sensorc2;
@@ -138,9 +147,26 @@ Serial.print("         Moyenne des valeurs:  ");
 Serial.print(medium);
 
 
-if(medium > 0 && medium < 0.80){digitalWrite(8, HIGH); digitalWrite(7,LOW);}
-if(medium > 0.80 && medium < 1.09){digitalWrite(8, LOW); digitalWrite(7,LOW); }
-if(medium > 1.09){digitalWrite(7, HIGH); digitalWrite(8, LOW);}
+if(medium > 0 && medium < 0.90){digitalWrite(8, HIGH); digitalWrite(7,LOW);}
+if(medium > 0.90 && medium < 1.03){digitalWrite(8, LOW); digitalWrite(7,LOW); }
+if(medium > 1.03){digitalWrite(7, HIGH); digitalWrite(8, HIGH);}
+              }
+
+/// MODE 1
+if(mode != 0){
+  sensorc = sensor.readRangeSingleMillimeters();
+sensorc2 = sensor2.readRangeSingleMillimeters(); 
+medium = sensorc - sensorc2;
+
+Serial.print("         Soustraction des valeurs:  ");
+Serial.print(medium);
+
+
+if(medium < -5){digitalWrite(8, HIGH); digitalWrite(7,LOW);}
+if(medium > -5 && medium < 6){digitalWrite(8, LOW); digitalWrite(7,LOW); }
+if(medium > 6){digitalWrite(7, HIGH); digitalWrite(8, HIGH);}
+              }
+
 
 
   Serial.println();
