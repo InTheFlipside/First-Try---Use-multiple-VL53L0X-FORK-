@@ -17,6 +17,7 @@ void setup()
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
+  
   digitalWrite(9, LOW);
   digitalWrite(10, LOW);
   delay(5);
@@ -164,7 +165,7 @@ Serial.print(medium);
 
 if(medium < -5){digitalWrite(8, HIGH); digitalWrite(7,LOW);}
 if(medium > -5 && medium < 6){digitalWrite(8, LOW); digitalWrite(7,LOW); }
-if(medium > 6){digitalWrite(7, HIGH); digitalWrite(8, HIGH);}
+if(medium > 6){digitalWrite(7, HIGH); digitalWrite(8, LOW);}
               }
 
 
